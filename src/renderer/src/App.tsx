@@ -3,10 +3,13 @@ import { products } from './data/products'
 import type { Product } from './types/product'
 import type { CartItem } from './types/cart'
 
+import Login from './Login'
+
 function App() {
   const [cart, setCart] = useState<CartItem[]>([])
   const [search, setSearch] = useState('')
   const [cashReceived, setCashReceived] = useState('')
+  const [user, setUser] = useState<string | null>(null)
   const cartRef = useRef<HTMLDivElement>(null)
 
   function addToCart(product: Product) {
@@ -97,6 +100,10 @@ useEffect(() => {
     border: 'none',
     cursor: 'pointer'
     } as const
+
+    if (!user) {
+      return <Login onLogin={setUser} />
+    }
 
   return (
     <div style={{ minHeight: '100vh', background: '#1e1e1e', color: 'white', padding: 20 }}>
