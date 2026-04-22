@@ -2,6 +2,7 @@ import { useMemo, useState, useRef, useEffect } from 'react'
 import { products } from './data/products'
 import type { Product } from './types/product'
 import type { CartItem } from './types/cart'
+import styles from './style.module.css';
 
 import Login from './Login'
 
@@ -38,8 +39,8 @@ function App() {
   }
 
   function keypadPress(value: string) {
-  setSearch((current) => current + value)
-}
+    setSearch((current) => current + value)
+  }
 
 function keypadClear() {
   setSearch('')
@@ -76,30 +77,6 @@ useEffect(() => {
   const total = subtotal + tax
   const cash = Number(cashReceived) || 0
   const change = Math.max(0, cash - total)
-
-    const keyStyle = {
-    padding: '22px 0',
-    fontSize: '1.4rem',
-    borderRadius: 12,
-    border: 'none',
-    cursor: 'pointer'
-    } as const
-
-    const actionKeyStyle = {
-    padding: '22px 0',
-    fontSize: '1rem',
-    borderRadius: 12,
-    border: 'none',
-    cursor: 'pointer'
-    } as const
-
-    const enterKeyStyle = {
-    padding: '22px 0',
-    fontSize: '1rem',
-    borderRadius: 12,
-    border: 'none',
-    cursor: 'pointer'
-    } as const
 
     if (!user) {
       return <Login onLogin={setUser} />
@@ -166,32 +143,32 @@ useEffect(() => {
           </div>
         </div>
         <div style={{ background: '#2b2b2b', padding: 16, borderRadius: 12 }}>
-        <div
-            style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: 12
-            }}
-        >
-            <button onClick={() => keypadPress('7')} style={keyStyle}>7</button>
-            <button onClick={() => keypadPress('8')} style={keyStyle}>8</button>
-            <button onClick={() => keypadPress('9')} style={keyStyle}>9</button>
-            <button onClick={keypadBackspace} style={actionKeyStyle}>Back</button>
+          <div
+              style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(4, 1fr)',
+              gap: 12
+              }}
+          >
+              <button onClick={() => keypadPress('7')} className={styles.keyStyle}>7</button>
+              <button onClick={() => keypadPress('8')} className={styles.keyStyle}>8</button>
+              <button onClick={() => keypadPress('9')} className={styles.keyStyle}>9</button>
+              <button onClick={keypadBackspace} className={styles.actionKeyStyle}>Back</button>
 
-            <button onClick={() => keypadPress('4')} style={keyStyle}>4</button>
-            <button onClick={() => keypadPress('5')} style={keyStyle}>5</button>
-            <button onClick={() => keypadPress('6')} style={keyStyle}>6</button>
-            <button onClick={keypadClear} style={actionKeyStyle}>Clear</button>
+              <button onClick={() => keypadPress('4')} className={styles.keyStyle}>4</button>
+              <button onClick={() => keypadPress('5')} className={styles.keyStyle}>5</button>
+              <button onClick={() => keypadPress('6')} className={styles.keyStyle}>6</button>
+              <button onClick={keypadClear} className={styles.actionKeyStyle}>Clear</button>
 
-            <button onClick={() => keypadPress('1')} style={keyStyle}>1</button>
-            <button onClick={() => keypadPress('2')} style={keyStyle}>2</button>
-            <button onClick={() => keypadPress('3')} style={keyStyle}>3</button>
-            <button onClick={keypadEnter} style={enterKeyStyle}>Enter</button>
+              <button onClick={() => keypadPress('1')} className={styles.keyStyle}>1</button>
+              <button onClick={() => keypadPress('2')} className={styles.keyStyle}>2</button>
+              <button onClick={() => keypadPress('3')} className={styles.keyStyle}>3</button>
+              <button onClick={keypadEnter} className={styles.enterKeyStyle}>Enter</button>
 
-            <button onClick={() => keypadPress('0')} style={{ ...keyStyle, gridColumn: 'span 4' }}>
-            0
-            </button>
-        </div>
+              <button onClick={() => keypadPress('0')} className={styles.enterKeyStyle} style={{ gridColumn: 'span 4' }}>
+              0
+              </button>
+          </div>
         </div>
 
           <div style={{ marginTop: 20 }}>

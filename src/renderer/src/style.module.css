@@ -1,0 +1,23 @@
+.keyStyle {
+    padding: 22px 0;
+    font-size: 1.4rem;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+}
+
+.actionKeyStyle {
+    padding: 22px 0;
+    font-size: 1rem;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+}
+
+.enterKeyStyle {
+    padding: 22px 0;
+    font-size: 1rem;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+}
