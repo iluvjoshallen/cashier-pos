@@ -13,8 +13,11 @@ export default function Login({ onLogin }: Props) {
   function handleLogin() {
     if (username === '1234' && pin === '1234') {
       onLogin(username)
-    } else {
+    }else {
       alert('Invalid login')
+      setUsername('')
+      setPin('')
+      setActiveField('username')
     }
   }
 
@@ -54,6 +57,7 @@ export default function Login({ onLogin }: Props) {
     <div style={{minHeight: '100vh', background: '#1e1e1e', color: 'white', padding: 20}}>
       <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 20 }}>
       <div style={{ background: '#2b2b2b', padding: 30, borderRadius: 12 }}>
+        <h1 style={{ padding: 20}}>Point Of Sale Login</h1>
         <input
             placeholder="Username"
             value={username}

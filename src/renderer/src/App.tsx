@@ -9,7 +9,6 @@ import Login from './Login'
 function App() {
   const [cart, setCart] = useState<CartItem[]>([])
   const [search, setSearch] = useState('')
-  const [cashReceived, setCashReceived] = useState('')
   const [user, setUser] = useState<string | null>(null)
   const cartRef = useRef<HTMLDivElement>(null)
 
@@ -35,7 +34,6 @@ function App() {
 
   function clearCart() {
     setCart([])
-    setCashReceived('')
   }
 
   function keypadPress(value: string) {
@@ -63,6 +61,12 @@ function keypadEnter() {
   }
 }
 
+function logout() {
+  setUser(null)
+  clearCart()
+  setSearch('')
+}
+
 useEffect(() => {
   if (cartRef.current) {
     cartRef.current.scrollTop = cartRef.current.scrollHeight
@@ -75,8 +79,6 @@ useEffect(() => {
 
   const tax = subtotal * 0.08
   const total = subtotal + tax
-  const cash = Number(cashReceived) || 0
-  const change = Math.max(0, cash - total)
 
     if (!user) {
       return <Login onLogin={setUser} />
@@ -171,43 +173,24 @@ useEffect(() => {
           </div>
         </div>
 
-          <div style={{ marginTop: 20 }}>
+          <div>
             <p>Subtotal: ${subtotal.toFixed(2)}</p>
             <p>Tax: ${tax.toFixed(2)}</p>
             <h3>Total: ${total.toFixed(2)}</h3>
 
-            <input
-              type="number"
-              step="0.01"
-              placeholder="Cash received"
-              value={cashReceived}
-              onChange={(e) => setCashReceived(e.target.value)}
-              style={{
-                width: '100%',
-                padding: 12,
-                marginTop: 12,
-                borderRadius: 8,
-                border: 'none'
-              }}
-            />
-
-            <p style={{ marginTop: 12 }}>Change Due: ${change.toFixed(2)}</p>
-
             <div style={{ display: 'flex', gap: 10, marginTop: 12 }}>
               <button
+                onClick={() => console.log('Go to total/payment page')}
                 style={{ flex: 1, padding: 12, borderRadius: 8, border: 'none', cursor: 'pointer' }}
               >
-                Cash
+                Total
               </button>
+
               <button
+                onClick={logout}
                 style={{ flex: 1, padding: 12, borderRadius: 8, border: 'none', cursor: 'pointer' }}
               >
-                Card
-              </button>
-              <button
-                style={{ flex: 1, padding: 12, borderRadius: 8, border: 'none', cursor: 'pointer' }}
-              >
-                Personal Check
+                Logout
               </button>
             </div>
 
